@@ -1,0 +1,9 @@
+body {
+    background: #111;
+    color: #fff;
+    font-family: Arial;
+}
+input, button, select {
+    margin: 8px;
+    padding: 8px;
+}

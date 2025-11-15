@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+    <style>
+        body {
+            background: #0a0f24;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: rgba(20, 25, 50, 0.5);
+            padding: 35px;
+            border-radius: 18px;
+            width: 350px;
+            box-shadow: 0 0 25px #00fff2;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,255,242,0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00fff2;
+            text-shadow: 0 0 20px #00fff2;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 15px;
+            box-shadow: 0 0 10px #7b2cff;
+        }
+
+        input:focus, select:focus {
+            box-shadow: 0 0 15px #ff0099;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: linear-gradient(90deg, #ff0099, #7b2cff);
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 0 15px #ff0099;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #ff00dd;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST">
+        <h2>Signup</h2>
+
+        <input name="name" placeholder="Name">
+        <input name="email" placeholder="Email">
+        <input name="password" placeholder="Password" type="password">
+        <input name="weight" placeholder="Weight (kg)" type="number">
+
+        <select name="goal">
+            <option value="gain">Gain</option>
+            <option value="lose">Lose</option>
+            <option value="maintain">Maintain</option>
+        </select>
+
+        <button>Signup</button>
+    </form>
+</body>
+
+</html>

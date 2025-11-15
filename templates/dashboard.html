@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #05071a, #0a0f33, #1c0055);
+            background-size: 300% 300%;
+            animation: neonMove 8s infinite alternate;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        @keyframes neonMove {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #00f7ff;
+            text-shadow: 0 0 15px #00f7ff;
+            margin-bottom: 20px;
+        }
+
+        .stats-box {
+            width: 85%;
+            max-width: 450px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px #00dff7;
+        }
+
+        .stats-box p {
+            font-size: 20px;
+            color: #d6d6d6;
+            margin: 8px 0;
+        }
+
+        .menu {
+            width: 85%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #ff00cc, #7b2cff);
+            color: white;
+            box-shadow: 0 0 20px #ff00d4;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 30px #ff00f7;
+        }
+
+        .logout {
+            background: linear-gradient(90deg, #ff4444, #ff0000);
+            box-shadow: 0 0 20px #ff4444;
+        }
+
+        .logout:hover {
+            box-shadow: 0 0 35px #ff6b6b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Your Dashboard</h2>
+
+    <div class="stats-box">
+        <p><strong>Today's Calories:</strong> {{ calories }}</p>
+        <p><strong>Today's Protein:</strong> {{ protein }} g</p>
+    </div>
+
+    <div class="menu">
+        <a href="/meals">Meals</a>
+        <a href="/workouts">Workouts</a>
+        <a href="/progress">Progress Photos</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+
+</body>
+
+</html>

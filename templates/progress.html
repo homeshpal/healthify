@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Photos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .neon-body {
+    background: #000;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    text-align: center;
+    padding: 40px;
+}
+
+.card {
+    background: rgba(20, 20, 20, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 550px;
+    margin: auto;
+    box-shadow: 0 0 25px #0ff;
+}
+
+.title {
+    margin-bottom: 25px;
+    color: #0ff;
+    text-shadow: 0 0 12px #0ff;
+}
+
+.neon-form input,
+.neon-form button {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.input-file {
+    padding: 10px;
+    border: 1px solid #0ff;
+    border-radius: 8px;
+    background: #111;
+    color: #0ff;
+}
+
+.neon-btn {
+    padding: 12px;
+    background: #0ff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 12px #0ff;
+    transition: 0.2s;
+}
+
+.neon-btn:hover {
+    box-shadow: 0 0 22px #0ff;
+}
+
+/* Gallery Grid */
+.gallery {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.photo-box {
+    background: #111;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #0ff;
+}
+
+.progress-img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #0ff;
+}
+</style>
+</head>
+
+<body class="neon-body">
+
+    <div class="card">
+        <h2 class="title">Progress Photos</h2>
+
+        <form method="POST" enctype="multipart/form-data" class="neon-form">
+            <input type="file" name="image" class="input-file">
+            <button class="neon-btn">Upload</button>
+        </form>
+
+        <div class="gallery">
+            {% for p in images %}
+            <div class="photo-box">
+                <img src="/static/uploads/{{ p.image_path }}" alt="Progress" class="progress-img">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

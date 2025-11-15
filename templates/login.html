@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #05071a, #0c1030, #190055);
+            background-size: 300% 300%;
+            animation: bgMove 8s infinite alternate;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes bgMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .card {
+            width: 360px;
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0px 0px 30px #00eaff;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #00f7ff;
+            text-shadow: 0 0 15px #00f7ff;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.13);
+            border: none;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0px 0px 15px #7b2cff;
+        }
+
+        input:focus {
+            box-shadow: 0 0 20px #ff0099;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #ff00cc, #7b2cff);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 0 25px #ff00d4;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 35px #ff00f7;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+            color: #c6c6c6;
+        }
+
+        a {
+            color: #00f7ff;
+            text-decoration: none;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00f7ff;
+        }
+
+        a:hover {
+            color: #ff5ceb;
+            text-shadow: 0 0 15px #ff5ceb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <h2>Login</h2>
+
+        <form method="POST">
+            <input type="email" name="email" placeholder="Enter Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Don't have an account? <a href="/signup">Signup</a></p>
+    </div>
+</body>
+</html>

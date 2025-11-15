@@ -7,13 +7,17 @@ app.secret_key = "secret123"
 UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
+
+# ---------------- DB FUNCTIONS ----------------
 def get_db():
     conn = sqlite3.connect("database.db")
     conn.row_factory = sqlite3.Row
     return conn
 
+
 def init_db():
     conn = get_db()
+    
     conn.execute("""
         CREATE TABLE IF NOT EXISTS users(
             id INTEGER PRIMARY KEY,
@@ -24,6 +28,7 @@ def init_db():
             goal TEXT
         );
     """)
+
     conn.execute("""
         CREATE TABLE IF NOT EXISTS meals(
             id INTEGER PRIMARY KEY,
@@ -36,6 +41,7 @@ def init_db():
             date TEXT
         );
     """)
+
     conn.execute("""
         CREATE TABLE IF NOT EXISTS workouts(
             id INTEGER PRIMARY KEY,
@@ -47,6 +53,7 @@ def init_db():
             date TEXT
         );
     """)
+
     conn.execute("""
         CREATE TABLE IF NOT EXISTS progress(
             id INTEGER PRIMARY KEY,
@@ -55,16 +62,21 @@ def init_db():
             date TEXT
         );
     """)
+
     conn.commit()
 
+
+# Initialize database
 init_db()
 
-# ---------- ROUTES ----------
+
+# ---------------- ROUTES ----------------
 @app.route("/")
 def home():
     if "user_id" not in session:
         return redirect("/login")
     return redirect("/dashboard")
+
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -83,6 +95,7 @@ def signup():
 
     return render_template("signup.html")
 
+
 @app.route("/login", methods=["GET","POST"])
 def login():
     if request.method == "POST":
@@ -98,6 +111,7 @@ def login():
         return "Invalid Credentials"
 
     return render_template("login.html")
+
 
 @app.route("/dashboard")
 def dashboard():
@@ -115,6 +129,7 @@ def dashboard():
     return render_template("dashboard.html",
                            calories=today["cal"] or 0,
                            protein=today["pro"] or 0)
+
 
 @app.route("/meals", methods=["GET","POST"])
 def meals():
@@ -136,6 +151,7 @@ def meals():
     data = conn.execute("SELECT * FROM meals WHERE user_id=?", (uid,)).fetchall()
     return render_template("meals.html", meals=data)
 
+
 @app.route("/workouts", methods=["GET","POST"])
 def workouts():
     uid = session["user_id"]
@@ -154,6 +170,7 @@ def workouts():
 
     data = conn.execute("SELECT * FROM workouts WHERE user_id=?", (uid,)).fetchall()
     return render_template("workouts.html", workouts=data)
+
 
 @app.route("/progress", methods=["GET","POST"])
 def progress():
@@ -174,9 +191,13 @@ def progress():
     imgs = conn.execute("SELECT * FROM progress WHERE user_id=?", (uid,)).fetchall()
     return render_template("progress.html", images=imgs)
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/login")
 
-app.run(debug=True)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
